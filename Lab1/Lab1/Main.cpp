@@ -4,9 +4,14 @@
 #include <algorithm>
 using namespace std;
 
+bool wayToSort(Product *i, Product *j)
+{
+	return  i->getGrossPrice() < j->getGrossPrice();
+}
+
 int main()
 {
-	const int size = 7;
+	const int size = 8;
 	Product *ptrs[size];
 
 	Book *book1;
@@ -28,7 +33,7 @@ int main()
 	ptrs[0] = book1;
 	ptrs[1] = software1;
 
-	for (int i = 2; i <= size; i++)
+	for (int i = 2; i < size; i++)
 	{
 		cout << "Enter price of item " << i + 1 << ": ";
 		cin >> price;
@@ -50,7 +55,14 @@ int main()
 		cout << ptrs[i]->getGrossPrice() << "\n";
 	}
 
-	sort(ptrs, ptrs + size);
+	/***************************************************************************************
+	*    Usage: modified
+	*    Title: Beginners guide to the std::sort() function
+	*    Date: 11/02/2018
+	*    Availability: http://www.cplusplus.com/articles/NhA0RXSz/
+	***************************************************************************************/
+	cout << "\n\nAfter Sort";
+	sort(begin(ptrs), end(ptrs), wayToSort);
 
 	for (int i = 0; i <= size; i++)
 	{
