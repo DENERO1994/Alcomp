@@ -1,5 +1,17 @@
 #include "iostream"
+#include "vector"
+
 using namespace std;
+
+/***************************************************************************************
+
+*    Usage: modified
+*    Title: Merge Sort
+*    Author: cppnoob25
+*    Date: 16/02/2018
+*    Availability: http://www.cplusplus.com/forum/general/166536/
+*
+***************************************************************************************/
 
 void merge(int arraySortedInTwoHalves[], int startindex, int length)
 {
@@ -48,11 +60,62 @@ void mergeSort(int arrayToSort[], int startindex, int lengthToSort)
 	merge(arrayToSort, startindex, lengthToSort);
 }
 
+/***************************************************************************************
+
+*    Usage: modified
+*    Title: QuickSort
+*    Author: GeeksforGeeks
+*    Date: 19/02/2018
+*    Availability: https://www.geeksforgeeks.org/quick-sort/
+*
+***************************************************************************************/
+
+void swap(int* a, int* b)
+{
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
+int quickSortDivide(int theArray[], int first, int last)
+{
+	int pivot = theArray[last];
+	int i = (first - 1);
+
+	for (int j = first; j <= last - 1; j++)
+	{
+		if (theArray[j] <= pivot)
+		{
+			i++;
+			swap(&theArray[i], &theArray[j]);
+		}
+	}
+	swap(&theArray[i + 1], &theArray[last]);
+	return (i + 1);
+}
+
+void quickSort(int theArray[], int first, int last)
+{
+	if (first < last)
+	{
+		int pi = quickSortDivide(theArray, first, last);
+
+		quickSort(theArray, first, pi - 1);
+		quickSort(theArray, pi + 1, last);
+	}
+}
+
 int main()
 {
 	int unsortedArray[10] = { 3,2,1,9 };
 
-	mergeSort(unsortedArray, 0, 3);
+	for (int i = 0; i < 4; i++)
+	{
+		cout << unsortedArray[i] << " ";
+	}
+
+	cout << "\n\n";
+	quickSort(unsortedArray, 0, 3);
 
 	for (int i = 0; i < 4; i++)
 	{
