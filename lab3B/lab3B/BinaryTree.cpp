@@ -1,7 +1,10 @@
 #include "BinaryTree.h"
 #include <cstdlib>
+#include <algorithm>
 
-BinaryTree::BinaryTree(){}
+using namespace std;
+
+BinaryTree::BinaryTree() {}
 
 void BinaryTree::add(int data)
 {
@@ -47,7 +50,23 @@ void BinaryTree::add(int data, TreeNode *leaf)
 	}
 }
 
+int BinaryTree::height(TreeNode *root)
+{
+	if (root == NULL)
+	{
+		return -1;
+	}
+	else if (root != NULL && root->left == NULL && root->right == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		return max(height(root->left), height(root->right)) + 1;
+	}
+}
+
 int BinaryTree::height()
 {
-	return 0;
+	return height(this->root);
 }
