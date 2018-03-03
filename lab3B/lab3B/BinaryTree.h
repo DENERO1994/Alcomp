@@ -11,7 +11,7 @@ public:
 	int height();
 private:
 	void add(int, TreeNode*);
-	int height(TreeNode*);
+	int height(TreeNode*) const;
 	TreeNode *root;
 };
 

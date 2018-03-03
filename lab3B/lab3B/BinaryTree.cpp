@@ -6,64 +6,78 @@ using namespace std;
 
 BinaryTree::BinaryTree() {}
 
-void BinaryTree::add(int data)
+/***************************************************************************************
+
+*    Usage: modified
+*    Title: Binary Tree Implementation
+*    Author: tobocus
+*    Date: 02/03/2018
+*    Availability: https://gist.github.com/toboqus/def6a6915e4abd66e922
+*
+***************************************************************************************/
+
+void BinaryTree::add(int key)
 {
-	if (root != NULL)
-	{
-		add(data, root);
+	if (root != NULL) {
+		add(key, root);
 	}
-	else
-	{
-		root = new TreeNode(data);
+	else {
+		root = new TreeNode(key);
 		root->left = NULL;
 		root->right = NULL;
 	}
 }
 
-void BinaryTree::add(int data, TreeNode *leaf)
+void BinaryTree::add(int key, TreeNode *leaf)
 {
-	if (data < leaf->data)
-	{
-		if (leaf->left != NULL)
-		{
-			add(data, leaf->left);
+	if (key < leaf->data) {
+		if (leaf->left != NULL) {
+			add(key, leaf->left);
 		}
-		else
-		{
-			leaf->left = new TreeNode(data);
-			root->left->left = NULL;
-			root->left->right = NULL;
+		else {
+			leaf->left = new TreeNode(key);
+			leaf->left->left = NULL;
+			leaf->left->right = NULL;
 		}
 	}
-	else if (data >= leaf->data)
-	{
-		if (leaf->right != NULL)
-		{
-			add(data, leaf->right);
+	else if (key >= leaf->data) {
+		if (leaf->right != NULL) {
+			add(key, leaf->right);
 		}
-		else
-		{
-			leaf->right = new TreeNode(data);
-			root->right->left = NULL;
-			root->right->right = NULL;
+		else {
+			leaf->right = new TreeNode(key);
+			leaf->right->right = NULL;
+			leaf->right->left = NULL;
 		}
 	}
 }
 
-int BinaryTree::height(TreeNode *root)
+/***************************************************************************************
+
+*    Usage: modified
+*    Title: Write program to find max depth of a tree
+*    Author: GeeksForGeeks
+*    Date: 02/03/2018
+*    Availability: https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
+*
+***************************************************************************************/
+
+int BinaryTree::height(TreeNode *root) const
 {
 	if (root == NULL)
 	{
 		return -1;
 	}
-	else if (root != NULL && root->left == NULL && root->right == NULL)
+	
+	int left = height(root->left);
+	int right = height(root->right);
+
+	if (left > right)
 	{
-		return 0;
+		return(left + 1);
 	}
 	else
-	{
-		return max(height(root->left), height(root->right)) + 1;
-	}
+		return(right + 1);
 }
 
 int BinaryTree::height()
