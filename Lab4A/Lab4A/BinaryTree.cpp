@@ -57,7 +57,7 @@ void BinaryTree::inorder(TreeNode* node)
 	inorder(node->left);
 
 	/* then print the data of node */
-	printf("%d ", node->data);
+	cout << node->data;
 
 	/* now recur on right child */
 	inorder(node->right);
@@ -69,7 +69,7 @@ void BinaryTree::preorder(TreeNode *node)
 		return;
 
 	/* first print data of node */
-	printf("%d ", node->data);
+	cout << node->data;
 
 	/* then recur on left sutree */
 	preorder(node->left);
@@ -90,7 +90,7 @@ void BinaryTree::postorder(TreeNode *node)
 	postorder(node->right);
 
 	// now deal with the node
-	printf("%d ", node->data);
+	cout << node->data;
 }
 
 void BinaryTree::add(char data, TreeNode *leaf)

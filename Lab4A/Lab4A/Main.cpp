@@ -12,6 +12,9 @@ int main()
 	b->add('e');
 	b->add('n');
 	b->add('a');
+	b->add('c');
+	b->add('r');
+	b->add('m');
 
 	if (b->search('z') == true)				//Search for z before inserting z(returns false)
 	{
@@ -41,7 +44,7 @@ int main()
 	b->preorder();
 
 	cout << "\n\nPostorder traversal\n";
-	b->preorder();
+	b->postorder();
 
 	cout << "\n\n";
 	system("pause");
